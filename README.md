@@ -125,7 +125,7 @@ Cerebrium will:
 - After deployment, you will see the endpoint URL for your inference API. For example:
 
 ```bash
-https://api.cortex.cerebrium.ai/v4/p-<project-id>/imagenet-classifier/predict
+https://api.cortex.cerebrium.ai/v4/p-<project-id>/mtailor-mlops-classifier/predict
 ```
 API Key: Obtain your JWT from the Cerebrium dashboard under “API Keys”. You need this to call the endpoint.
 
@@ -187,7 +187,7 @@ You can test the deployed model using the e2e_test.py script, which sends a test
 Making API Calls to the Deployed Model
 Using curl:
 ```bash
-curl -X POST   https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-classifier/predict  -H 'Authorization: Bearer <your_api_key> -F  'file=@<path_to_you_image.jpeg>'
+curl -X POST   https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-classifier/predict  -H 'Authorization: Bearer <your_api_key>' -F  'file=@<path_to_you_image.jpeg>'
 ```
 Replace YOUR_TOKEN_HERE with your actual Cerebrium API token and path/to/your/image.jpeg with the path to the image you want to classify.
 
