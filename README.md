@@ -59,7 +59,7 @@ pip install -r requirements.txt
     python app.py
     ```
     The API will be available at http://localhost:8080. You can access the interactive API documentation at http://localhost:8080/docs.
-## 3. Build and Run the Docker Image Locally
+## 4. Build and Run the Docker Image Locally
 -  Build the image:
 
     ```bash
@@ -101,7 +101,7 @@ pip install -r requirements.txt
     ```bash
     docker stop local_test; docker rm local_test
     ```
-## 4. Deploy to Cerebrium
+## 5. Deploy to Cerebrium
 Login to Cerebrium:
 
 ```bash
@@ -129,7 +129,7 @@ https://api.cortex.cerebrium.ai/v4/p-<project-id>/imagenet-classifier/predict
 ```
 API Key: Obtain your JWT from the Cerebrium dashboard under “API Keys”. You need this to call the endpoint.
 
-## 5. Test the Deployed Endpoint
+## 6. Test the Deployed Endpoint
 Use test_server.py to verify that remote inference matches local ONNX:
 
 - Single‐image Mode:
@@ -174,7 +174,7 @@ If any prediction mismatches, double‐check that:
 
 The request is hitting /predict on the correct URL with the correct JWT.
 
-## 6. Cerebrium Configuration
+## 7. Cerebrium Configuration
 This project is deployed on Cerebrium, a MLOps platform for easy model deployment.
 
 Deployment Details
@@ -191,7 +191,7 @@ curl -X POST   https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-class
 ```
 Replace YOUR_TOKEN_HERE with your actual Cerebrium API token and path/to/your/image.jpeg with the path to the image you want to classify.
 
-## 7. Continuous Integration (Optional)
+## 8. Continuous Integration (Optional)
 A GitHub Actions workflow (.github/workflows/ci.yml) automates building, testing, and packaging:
 
 - Checkout code
