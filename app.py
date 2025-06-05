@@ -38,3 +38,9 @@ async def predict(file: UploadFile = File(...)):
     probs = onnx_model.predict(arr).squeeze()      # (1000,)
 
     return {"probabilities": probs.tolist()}
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8080)
