@@ -127,7 +127,7 @@ Cerebrium will:
 ```bash
 https://api.cortex.cerebrium.ai/v4/p-<project-id>/mtailor-mlops-classifier/predict
 ```
-API Key: Obtain your JWT from the Cerebrium dashboard under “API Keys”. You need this to call the endpoint.
+API Key: Obtain your API key from the Cerebrium dashboard under “API Keys”. You need this to call the endpoint.
 
 ## 6. Test the Deployed Endpoint
 Use test_server.py to verify that remote inference matches local ONNX:
@@ -172,7 +172,7 @@ Image: samples/n01667114_mud_turtle.JPEG
 ```
 If any prediction mismatches, double‐check that:
 
-The request is hitting /predict on the correct URL with the correct JWT.
+The request is hitting /predict on the correct URL with the correct api-key.
 
 ## 7. Cerebrium Configuration
 This project is deployed on Cerebrium, a MLOps platform for easy model deployment.
@@ -190,6 +190,11 @@ Using curl:
 curl -X POST   https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-classifier/predict  -H 'Authorization: Bearer <your_api_key>' -F  'file=@<path_to_you_image.jpeg>'
 ```
 Replace YOUR_TOKEN_HERE with your actual Cerebrium API token and path/to/your/image.jpeg with the path to the image you want to classify.
+
+To check health of deployed model:
+```bash
+curl -X GET   https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-classifier/health  -H 'Authorization: Bearer <your_api_key>'
+```
 
 ## 8. Continuous Integration (Optional)
 A GitHub Actions workflow (.github/workflows/ci.yml) automates building, testing, and packaging:
