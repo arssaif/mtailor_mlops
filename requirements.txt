@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+onnxruntime
+numpy
+pillow
+requests
+torch
+torchvision
+onnx
+python-multipart

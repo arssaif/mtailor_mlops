@@ -1,0 +1,20 @@
+# cerebrium.toml
+[cerebrium.deployment]
+name = "mtailor-mlops-classifier"
+python_version = "3.10"
+
+[cerebrium.runtime.custom]
+# The port that the container listens on for inference traffic
+port = 8192
+
+# Endpoints for health and readiness checks
+healthcheck_endpoint = "/health"
+readycheck_endpoint  = "/ready"
+
+# Path to the Dockerfile to build this image
+dockerfile_path = "./Dockerfile"
+
+[cerebrium.hardware]
+# Request one A10G GPU (24 GB) for inference
+compute    = "AMPERE_A10"
+gpu_count  = 1
