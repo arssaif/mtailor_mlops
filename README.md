@@ -53,6 +53,12 @@ pip install -r requirements.txt
     ```bash
     python test.py --images path/to/image1.jpg path/to/image2.jpg
     ```
+## 3. Running the API Locally
+    Start the FastAPI server:
+    ```bash
+    python app.py
+    ```
+    The API will be available at http://localhost:8080. You can access the interactive API documentation at http://localhost:8080/docs.
 ## 3. Build and Run the Docker Image Locally
 -  Build the image:
 
