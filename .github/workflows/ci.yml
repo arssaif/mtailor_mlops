@@ -1,0 +1,66 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download PyTorch weights
+        run: |
+          wget -O pytorch_model_weights.pth "https://www.dropbox.com/s/b7641ryzmkceoc9/pytorch_model_weights.pth?dl=1"
+
+      - name: Convert to ONNX
+        run: |
+          python convert_to_onnx.py --weights pytorch_model_weights.pth --output model.onnx
+
+      - name: Run local ONNX tests
+        run: |
+          python test.py
+
+      - name: Build Docker image
+        run: |
+          docker build -t cerebrium-image-classifier .
+
+      - name: Run container in background
+        run: |
+          docker run -d --name test_container -p 8192:8192 cerebrium-image-classifier
+      - name: Wait for readiness
+        run: |
+          for i in {1..10}; do
+            if curl -s http://localhost:8192/ready | grep -q ready; then
+              echo "Container is ready."
+              break
+            fi
+            sleep 3
+          done
+
+      - name: Test health endpoint
+        run: |
+          curl -f http://localhost:8192/health
+
+      - name: Test inference endpoint
+        run: |
+          curl -f -X POST -F file=@samples/n01440764_tench.jpeg http://localhost:8192/predict | grep probabilities
+
+      - name: Teardown container
+        run: |
+          docker stop test_container
+          docker rm test_container
