@@ -88,7 +88,7 @@ pip install -r requirements.txt
     
     Using curl:
     ```bash
-    curl -X POST -F file=@samples/n01440764_tench.jpeg http://localhost:8192/predict \
+    curl -X POST -F file=@<path_to_image> http://localhost:8192/predict \
       | jq '.probabilities[0:5]'
     ```
     Using endpoint
