@@ -136,7 +136,7 @@ Use test_server.py to verify that remote inference matches local ONNX:
 
   ```bash
   python test_server.py \
-    --api-url --api-url https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-classifier/predict \
+    --api-url https://api.cortex.cerebrium.ai/v4/p-e9164d52/mtailor-mlops-classifier/predict \
     --api-key <your_api_key> \
     --image <path_to_you_image.jpeg>
   ```
